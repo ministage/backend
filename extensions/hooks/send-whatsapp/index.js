@@ -1,3 +1,6 @@
+const messagebird = require('messagebird')(process.env.MESSAGEBIRD, null, [
+    'ENABLE_CONVERSATIONSAPI_WHATSAPP_SANDBOX',
+]);
 module.exports = function registerHook({ exceptions }) {
 
 	return {
@@ -24,7 +27,21 @@ module.exports = function registerHook({ exceptions }) {
                     let last_one = aanwezig[0];
                     console.log(last_one.id);
                     console.log(last_one.phone);
-
+                    messagebird.conversations.reply(
+                        'ac9fec9e799b40e7a156febffa38d152',
+                        {
+                          type: 'text',
+                          content: {
+                            text: 'JO MAAT JE BENT DE LAATSTE IN DA HOUSE JE WEET ZELF BROER',
+                          },
+                        },
+                        function(err, response) {
+                          if (err) {
+                            return console.log(err);
+                          }
+                          console.log(response);
+                        },
+                      );
                 }
                 
 			return input;
