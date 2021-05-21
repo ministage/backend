@@ -14,8 +14,8 @@ module.exports = function registerHook({ exceptions }) {
                 console.log("is_present aangepast");
 
 
-                let aanwezig = users.filter(user => user.is_present === 1);
-                let afwezig = users.filter(user => user.is_present === 0);
+                let aanwezig = users.filter(user => user.is_present === true);
+                let afwezig = users.filter(user => user.is_present === false);
                 
                 console.log("aanwezig " + aanwezig.length);
                 console.log("afwezig " + afwezig.length);
