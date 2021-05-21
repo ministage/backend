@@ -56,6 +56,8 @@ RUN \
   mkdir -p database && \
   mkdir -p uploads
 
+COPY ./extensions/ ./extensions/
+
 EXPOSE 8055
 VOLUME \
   /directus/database \
