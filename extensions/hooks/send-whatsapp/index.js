@@ -2,6 +2,7 @@ module.exports = function registerHook({ exceptions }) {
 
 	return {
 		'users.update': async function (input) {
+            console.log('Hook triggered!');
             if(!Object.keys(input.payload).includes('is_present')){
                 return input;
             }
@@ -26,7 +27,7 @@ module.exports = function registerHook({ exceptions }) {
                     let last_one = aanwezig[0];
                     console.log(last_one.id);
                     console.log(last_one.phone);
-                    
+
                 }
                 
 			return input;
