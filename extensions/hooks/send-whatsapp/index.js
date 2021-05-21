@@ -10,7 +10,6 @@ module.exports = function registerHook({ exceptions }) {
                 let users = await input.database("directus_users")
                     .select("id", "is_present", "phone");
                 
-                console.log(users);
                 console.log("is_present aangepast");
 
 
