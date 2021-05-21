@@ -19,8 +19,6 @@ module.exports = function registerHook({ exceptions }) {
                 console.log("aanwezig " + aanwezig.length);
                 console.log("afwezig " + afwezig.length);
 
-                console.log(input);
-
                 let is_leaving = input.payload.is_present === false;
                 if(aanwezig.length === 1 && is_leaving){
                     let last_one = aanwezig[0];
