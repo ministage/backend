@@ -45,7 +45,7 @@ COPY ./package.json .
 RUN npm install
 
 # Copy files
-COPY . /
+COPY ./ /
 
 # Create directories
 RUN \
