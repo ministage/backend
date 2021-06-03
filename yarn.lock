@@ -1311,7 +1311,7 @@ dicer@0.3.0:
   dependencies:
     streamsearch "0.1.2"
 
-directus@^9.0.0-rc.64:
+directus@^9.0.0-rc.71:
   version "9.0.0-rc.71"
   resolved "https://registry.npmjs.org/directus/-/directus-9.0.0-rc.71.tgz#d8aed911cbb950c82841f5f5ba0a9a91a5fd7874"
   integrity sha512-liwy07T14nCI6yqIqjrPdRD9JKS0B/GbUXJwffLLQxV0SmAmZ89vHegcLkBPQIuDeVQJSgUGUrJZNFQ0kvP2eA==
