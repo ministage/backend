@@ -5,9 +5,7 @@ module.exports = function registerHook({
 
   return {
     'items.update': async function (input) {
-      console.log(input);
-      return input;
-      if (collection !== 'companies') return input;
+      if (input.collection !== 'companies') return input;
       console.log('Hook triggered!');
       if (!Object.keys(input.payload).includes('is_present')) {
         return input;
