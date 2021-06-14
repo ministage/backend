@@ -35,6 +35,7 @@ module.exports = function registerHook({
           'content': {
             'text': 'Je bent de laatste in het pand. Vergeet niet het alarm erop te doen :)'
           },
+          "reportUrl":"https://example.com/reports"
         };
         messagebird.conversations.send(params, function (err, response) {
           if (err) {
