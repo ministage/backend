@@ -64,4 +64,4 @@ VOLUME \
   /directus/extensions \
   /directus/uploads
 
-CMD ["npx", "directus", "start"]
+ENTRYPOINT ["start.sh"]
