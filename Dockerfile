@@ -64,4 +64,6 @@ VOLUME \
   /directus/extensions \
   /directus/uploads
 
-ENTRYPOINT ["start.sh"]
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
