@@ -32,16 +32,21 @@ module.exports = function registerHook({
           'to': `+31${last_one.phone}`,
           'type': 'hsm',
           'from': '0a8c4e09-e9d7-459d-97fc-4556755b9a4b',
-          'hsm': {
-            'templateName': 'order_update',
-            'language': {
-              'policy': 'deterministic',
-              'code': 'en'
-            },
-            'params': [
-              { 'default': 'Bob' },
-              { 'default': 'tomorrow!' }
-            ]
+          'content': {
+            'hsm': {
+              'templateName': 'order_update',
+              'language': {
+                'policy': 'deterministic',
+                'code': 'en'
+              },
+              'params': [{
+                  'default': 'Bob'
+                },
+                {
+                  'default': 'tomorrow!'
+                }
+              ]
+            }
           }
         };
         messagebird.conversations.send(params, function (err, response) {
