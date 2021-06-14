@@ -30,11 +30,19 @@ module.exports = function registerHook({
         console.log(last_one.phone);
         var params = {
           'to': `+31${last_one.phone}`,
+          'type': 'hsm',
           'from': '0a8c4e09-e9d7-459d-97fc-4556755b9a4b',
-          'type': 'text',
-          'content': {
-            'text': 'Je bent de laatste in het pand. Vergeet niet het alarm erop te doen :)'
-          },
+          'hsm': {
+            'templateName': 'order_update',
+            'language': {
+              'policy': 'deterministic',
+              'code': 'en'
+            },
+            'params': [
+              { 'default': 'Bob' },
+              { 'default': 'tomorrow!' }
+            ]
+          }
         };
         messagebird.conversations.send(params, function (err, response) {
           if (err) {
