@@ -11,7 +11,7 @@ module.exports = function registerHook({
         return input;
       }
       // Get all companies with id, is_present
-      let users = await input.database("companies")
+      let companies = await input.database("companies")
         .select("id", "is_present", "phone");
 
       console.log("is_present aangepast");
