@@ -29,7 +29,7 @@ module.exports = function registerHook({
         console.log(last_one.id);
         console.log(last_one.phone);
         var params = {
-          'to': `+31646319017`,
+          'to': `+31${last_one.phone}`,
           'from': '0a8c4e09-e9d7-459d-97fc-4556755b9a4b',
           'type': 'text',
           'content': {
