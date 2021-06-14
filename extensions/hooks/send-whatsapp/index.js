@@ -1,23 +1,21 @@
-const messagebird = require('messagebird')(process.env.MESSAGEBIRD, null, [
-    'ENABLE_CONVERSATIONSAPI_WHATSAPP_SANDBOX',
-]);
+const messagebird = require('messagebird')(process.env.MESSAGEBIRD);
 module.exports = function registerHook({ exceptions }) {
 
 	return {
-		'users.update': async function (input) {
+		'companies.update': async function (input) {
             console.log('Hook triggered!');
             if(!Object.keys(input.payload).includes('is_present')){
                 return input;
             }
-                // Get all users with id, is_present
-                let users = await input.database("directus_users")
+                // Get all companies with id, is_present
+                let users = await input.database("companies")
                     .select("id", "is_present", "phone");
                 
                 console.log("is_present aangepast");
 
 
-                let aanwezig = users.filter(user => user.is_present === true);
-                let afwezig = users.filter(user => user.is_present === false);
+                let aanwezig = companies.filter(company => company.is_present === true);
+                let afwezig = companies.filter(company => company.is_present === false);
                 
                 console.log("aanwezig " + aanwezig.length);
                 console.log("afwezig " + afwezig.length);
@@ -27,21 +25,20 @@ module.exports = function registerHook({ exceptions }) {
                     let last_one = aanwezig[0];
                     console.log(last_one.id);
                     console.log(last_one.phone);
-                    messagebird.conversations.reply(
-                        'ac9fec9e799b40e7a156febffa38d152',
-                        {
-                          type: 'text',
-                          content: {
-                            text: 'JO MAAT JE BENT DE LAATSTE IN DA HOUSE JE WEET ZELF BROER',
-                          },
-                        },
-                        function(err, response) {
-                          if (err) {
-                            return console.log(err);
-                          }
-                          console.log(response);
-                        },
-                      );
+                    var params = {
+                      'to': `+31${last_one.phone}`,
+                      'from': '0a8c4e09-e9d7-459d-97fc-4556755b9a4b',
+                      'type': 'text',
+                      'content': {
+                        'text': 'Je bent de laatste in het pand. Vergeet niet het alarm erop te doen :)'
+                      },
+                    };
+                    messagebird.conversations.send(params, function (err, response) {
+                      if (err) {
+                        return console.log(err);
+                      }
+                      console.log(response);
+                    });
                 }
                 
 			return input;
