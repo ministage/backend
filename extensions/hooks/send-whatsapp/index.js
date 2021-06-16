@@ -32,7 +32,7 @@ module.exports = function registerHook({
         if(last_one.phone.includes(',')){
           phones = last_one.phone.split(',');
         } else {
-          phones = last_one.phone;
+          phones.push(last_one.phone);
         }
         phones.forEach(phone => {
           var params = {
