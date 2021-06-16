@@ -28,21 +28,36 @@ module.exports = function registerHook({
         let last_one = aanwezig[0];
         console.log(last_one.id);
         console.log(last_one.phone);
-        var params = {
-          'to': `+31${last_one.phone}`,
-          'from': '0a8c4e09-e9d7-459d-97fc-4556755b9a4b',
-          'type': 'text',
-          'content': {
-            'text': 'Je bent de laatste in het pand. Vergeet niet het alarm erop te doen :)'
-          },
-          "reportUrl":"https://example.com/reports"
-        };
-        messagebird.conversations.send(params, function (err, response) {
-          if (err) {
-            return console.log(err);
-          }
-          console.log(response);
-        });
+        let phones = [];
+        if(last_one.phone.includes(',')){
+          phones = last_one.phone.split(',');
+        } else {
+          phones = last_one.phone;
+        }
+        phones.forEach(phone => {
+          var params = {
+            'to': `+31${phone}`,
+            'from': '0a8c4e09-e9d7-459d-97fc-4556755b9a4b',
+            'type': 'hsm',
+            'content': {
+              'hsm': {
+                "namespace": "7c4552d3_e8d8_4a4f_bd08_170e161b2780",
+                "templateName": "de_laatste_test",
+                "language": {
+                  "policy": "deterministic",
+                  "code": "nl"
+                  },
+              }
+            },
+            "reportUrl":"https://example.com/reports"
+          };
+          messagebird.conversations.send(params, function (err, response) {
+            if (err) {
+              return console.log(err);
+            }
+            console.log(response);
+          });
+        })
       }
 
       return input;
